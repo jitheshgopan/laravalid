@@ -129,7 +129,8 @@ class Rule extends \Bllim\Laravalid\Converter\Base\Rule {
 		$param = implode(',', $parsedRule['parameters']);
 		$encrpytedParam = Helper::encrypt($param);
 		$route = \Config::get('laravalid.route', 'laravalid');
-		return ['data-rule-remote' => '/' . $route . '/unique?params=' . $encrpytedParam];
+		return ['data-rule-remote' => \URL::to($route) . '/unique?params=' . $encrpytedParam];
+		
 	}
 
 	public function exists($parsedRule, $attribute, $type)
@@ -137,7 +138,7 @@ class Rule extends \Bllim\Laravalid\Converter\Base\Rule {
 		$param = implode(',', $parsedRule['parameters']);
 		$encrpytedParam = Helper::encrypt($param);
 		$route = \Config::get('laravalid.route', 'laravalid');
-		return ['data-rule-remote' => '/' . $route . '/exists?params=' . $encrpytedParam];
+		return ['data-rule-remote' => \URL::to($route) . '/exists?params=' . $encrpytedParam];
 	}
 
 
